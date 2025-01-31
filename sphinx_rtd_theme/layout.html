@@ -331,19 +331,21 @@
     
         // Create the version selector HTML
         const versionSelector = `
-          <div class="rst-versions">
-            <select onchange="window.location.href=this.value">
-              <option value="${config.versions.current.urls.documentation}">
-                ${config.versions.current.slug}
-              </option>
-              ${config.versions.active
-                .filter(v => v.slug !== config.versions.current.slug)
-                .map(version => `
-                  <option value="${version.urls.documentation}">
-                    ${version.slug}
-                  </option>
-                `).join('')}
-            </select>
+          <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+            <span class="rst-current-version" data-toggle="rst-current-version">
+              <span class="rst-current-version-label">Read the Docs</span>
+              version: ${config.versions.current.slug}
+              <span class="fa fa-caret-down"></span>
+            </span>
+            <div class="rst-other-versions">
+              <dl>
+                <dt>Versions</dt>
+                ${config.versions.active
+                  .map(version => `
+                    <dd><a href="${version.urls.documentation}">${version.slug}</a></dd>
+                  `).join('')}
+              </dl>
+            </div>
           </div>
         `;
     
