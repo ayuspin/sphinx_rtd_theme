@@ -348,7 +348,8 @@
         `;
     
         // Insert the version selector into your page
-        document.body.insertAdjacentHTML("beforeend", versionSelector);
+        document.querySelector('wy-nav-wrapper')
+          .insertAdjacentHTML('beforeend', versionSelector);
       }
     );
   </script>
